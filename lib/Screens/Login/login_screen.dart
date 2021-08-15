@@ -1,9 +1,12 @@
-import 'package:first_app/Screens/Welcome/components/Body.dart';
+import 'package:first_app/Screens/Login/components/Body.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class WelcomePage extends StatelessWidget {
-  WelcomePage({Key? key, required this.title}) : super(key: key);
+class LoginPage extends StatelessWidget
+{
+  LoginPage({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,4 +16,5 @@ class WelcomePage extends StatelessWidget {
       body: Body(),
     );
   }
+
 }

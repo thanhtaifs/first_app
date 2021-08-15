@@ -1,6 +1,6 @@
+import 'package:first_app/Screens/Welcome/WelcomePage.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
-import 'package:first_app/Screens/Welcome/WelcomePage.dart';
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: primaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: WelcomePage(title: 'Flutter Demo Home Page'),
+      home: WelcomePage(
+          title: 'Welcome Page',
+      ),
     );
   }
 }
