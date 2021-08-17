@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
 
 const primaryColor = Colors.blue;
-const bgColor = Colors.red;
+const PrimaryLightColor = Color(0xFFF1E6FF);
+const bgColor = Colors.green;
+

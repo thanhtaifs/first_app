@@ -18,7 +18,7 @@ class RoundedInputField extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
+      child: TextFormField(
         onChanged: onChanged,
         cursorColor: primaryColor,
         decoration: InputDecoration(
@@ -27,8 +27,15 @@ class RoundedInputField extends StatelessWidget
             color: primaryColor,
           ),
           hintText: hintText,
+          labelText: "Email *",
           border: InputBorder.none,
         ),
+        validator: (value){
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
       ),
     );
   }

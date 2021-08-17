@@ -34,7 +34,6 @@ class Body extends StatelessWidget
                   MaterialPageRoute(
                     builder: (context) {
                       return LoginPage(
-
                         title: 'Login Page',
                       );
                     },
