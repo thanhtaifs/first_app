@@ -14,7 +14,6 @@ class Body extends StatelessWidget
             children: <Widget>[
               Text("Data1"),
               SizedBox(height: size.height * 0.03),
-
             ],
           ),
         ),
