@@ -1,4 +1,6 @@
+import 'package:first_app/AppBarWithLogo.dart';
 import 'package:first_app/Screens/Welcome/components/Body.dart';
+import 'package:first_app/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -6,10 +8,9 @@ class WelcomePage extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(this.title),
-      ),
+      // appBar: buildAppBar(),
       body: Body(),
     );
   }
