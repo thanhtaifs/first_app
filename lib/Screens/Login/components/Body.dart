@@ -23,6 +23,39 @@ class Body extends StatefulWidget
 class BodyForm extends State<StatefulWidget>
 {
   final _formKey = GlobalKey<FormState>();
+  var isButtonEnabled = false;
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+
+  bool isEmpty()
+  {
+    setState(() {
+      if(_usernameController.text.trim() != "" && _passController.text.trim() != "")
+      {
+        isButtonEnabled=true;
+      }
+      else{
+        isButtonEnabled=false;
+      }
+    });
+    return isButtonEnabled;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    isEmpty();
+    _usernameController.addListener(() {
+
+    });
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -49,16 +82,22 @@ class BodyForm extends State<StatefulWidget>
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
                 hintText: "Tên đăng nhập",
-                onChanged: (value) {},
+                controller: _usernameController,
+                onChanged: (value) {
+                  isEmpty();
+                },
               ),
               RoundedPasswordField(
                 hintText: "Mật khâủ",
-                onChanged: (value) {},
+                controller: _passController,
+                onChanged: (value) {
+                  isEmpty();
+                },
               ),
               RoundedButton(
                 text: "LOGIN",
                 bgColor: BackgroundDefaultColor,
-                onPressed: () {
+                onPressed: isButtonEnabled? () {
                   if(_formKey.currentState!.validate()){
                     // ScaffoldMessenger.of(context).showSnackBar(
                     //   const SnackBar(content: Text('Processing Data')),
@@ -72,7 +111,7 @@ class BodyForm extends State<StatefulWidget>
                             })
                     );
                   }
-                },
+                } : null,
               ),
               SizedBox(height: size.height * 0.03),
             ],

@@ -1,6 +1,5 @@
 import 'package:first_app/Screens/Welcome/WelcomePage.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
 void main() {
   runApp(MyApp());
 }
