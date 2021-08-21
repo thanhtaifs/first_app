@@ -1,10 +1,10 @@
-import 'package:first_app/Screens/FormData/FormData.dart';
+import 'package:first_app/Models/Users.dart';
 import 'package:first_app/Screens/Login/components/Background.dart';
+import 'package:first_app/Screens/Main/MainPage.dart';
 import 'package:first_app/components/RoundedInputField.dart';
 import 'package:first_app/components/RoundedPasswordField.dart';
 import 'package:first_app/components/rounded_button.dart';
 import 'package:first_app/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -26,7 +26,7 @@ class BodyForm extends State<StatefulWidget>
   var isButtonEnabled = false;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
-
+  Users users = Users("", "");
   bool isEmpty()
   {
     setState(() {
@@ -40,13 +40,28 @@ class BodyForm extends State<StatefulWidget>
     });
     return isButtonEnabled;
   }
-
+  void InitObject()
+  {
+    users.userName = _usernameController.text;
+    users.passWord = _passController.text;
+  }
   @override
   void initState() {
     super.initState();
     isEmpty();
     _usernameController.addListener(() {
+      setState(()
+      {
 
+      });
+
+    });
+    _usernameController.addListener(()
+    {
+      setState(()
+      {
+
+      });
     });
   }
 
@@ -96,9 +111,10 @@ class BodyForm extends State<StatefulWidget>
               ),
               RoundedButton(
                 text: "LOGIN",
-                bgColor: BackgroundDefaultColor,
+                bgColor: isButtonEnabled? BackgroundDefaultColor : Colors.grey,
                 onPressed: isButtonEnabled? () {
                   if(_formKey.currentState!.validate()){
+                    InitObject();
                     // ScaffoldMessenger.of(context).showSnackBar(
                     //   const SnackBar(content: Text('Processing Data')),
                     // );
@@ -106,8 +122,10 @@ class BodyForm extends State<StatefulWidget>
                         context,
                         MaterialPageRoute(
                             builder: (context)
-                            {   return FormData(
-                                title: "Form Data");
+                            {
+                                return MainPage(
+                                  users: users,
+                                );
                             })
                     );
                   }

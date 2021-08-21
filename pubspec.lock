@@ -170,13 +170,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
-  text_editing_watcher:
-    dependency: "direct dev"
-    description:
-      name: text_editing_watcher
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   typed_data:
     dependency: transitive
     description:
