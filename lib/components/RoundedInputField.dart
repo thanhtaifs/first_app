@@ -21,18 +21,20 @@ class RoundedInputField extends StatelessWidget
       child: TextFormField(
         onChanged: onChanged,
         cursorColor: primaryColor,
+        style: TextStyle(
+          color: Colors.black,
+        ),
         decoration: InputDecoration(
           icon: Icon(
             icon,
-            color: primaryColor,
+            color: BackgroundDefaultColor,
           ),
           hintText: hintText,
-          labelText: "Email *",
           border: InputBorder.none,
         ),
         validator: (value){
           if (value == null || value.isEmpty) {
-            return 'Please enter some text';
+            return 'Vui lòng nhập dữ liệu';
           }
           return null;
         },

@@ -17,14 +17,14 @@ class Body extends StatelessWidget
           children: <Widget>[
             SizedBox(height: size.height * 0.05),
             SvgPicture.asset(
-              "assets/icons/chat.svg",
+              "assets/icons/LogoBrand.svg",
               height: size.height * 0.45,
             ),
             SizedBox(height: size.height * 0.1),
             RoundedButton(
               text: "LOGIN",
               textColor: primaryColor,
-              bgColor: Colors.purple,
+              bgColor: BackgroundDefaultColor,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -41,7 +41,7 @@ class Body extends StatelessWidget
             RoundedButton(
                 text: "SIGN UP",
                 color: primaryColor,
-                bgColor: Colors.purple,
+                bgColor: BackgroundDefaultColor,
                 textColor: primaryColor,
                 onPressed: (){
                   Navigator.push(

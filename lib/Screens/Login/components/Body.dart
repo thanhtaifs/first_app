@@ -34,25 +34,30 @@ class BodyForm extends State<StatefulWidget>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "LOGIN",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                "Đăng nhập hệ thống",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: BackgroundDefaultColor,
+                    fontSize: 22,
+                ),
               ),
               SizedBox(height: size.height * 0.03),
               SvgPicture.asset(
-                "assets/icons/chat.svg",
+                "assets/icons/LogoBrand.svg",
                 height: size.height * 0.35,
               ),
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
-                hintText: "Your Email",
+                hintText: "Tên đăng nhập",
                 onChanged: (value) {},
               ),
               RoundedPasswordField(
+                hintText: "Mật khâủ",
                 onChanged: (value) {},
               ),
               RoundedButton(
                 text: "LOGIN",
-                bgColor: bgColor,
+                bgColor: BackgroundDefaultColor,
                 onPressed: () {
                   if(_formKey.currentState!.validate()){
                     // ScaffoldMessenger.of(context).showSnackBar(
