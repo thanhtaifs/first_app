@@ -1,6 +1,5 @@
-
 import 'package:first_app/Models/Users.dart';
-import 'package:first_app/Screens/Main/components/Background.dart';
+import 'package:first_app/Screens/Main/components/Categories.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget
@@ -12,17 +11,13 @@ class Body extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Background(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(users.userName + ":" + users.passWord),
-              SizedBox(height: size.height * 0.03),
-            ],
-          ),
-        ),
+    // Size size = MediaQuery.of(context).size;
+    return SafeArea(
+        child: Column(
+          children: <Widget>[
+            Categories(),
+        ]
+      ),
     );
   }
 

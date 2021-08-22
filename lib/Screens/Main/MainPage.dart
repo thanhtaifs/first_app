@@ -2,6 +2,8 @@ import 'package:first_app/Models/Users.dart';
 import 'package:first_app/Screens/Main/components/Body.dart';
 import 'package:flutter/material.dart';
 
+import '../../AppBarWithLogoAndMenu.dart';
+
 class MainPage extends StatelessWidget {
   const MainPage({
     Key? key, required this.users,
@@ -11,9 +13,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(this.title),
-      // ),
+      appBar: buildAppBar(),
       body: Body(
         users: users,
       ),

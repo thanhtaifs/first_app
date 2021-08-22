@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'SizeConfig.dart';
 
 AppBar buildAppBar() {
   return AppBar(
