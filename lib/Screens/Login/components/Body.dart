@@ -1,15 +1,16 @@
+import 'dart:async';
+
 import 'package:first_app/Models/Users.dart';
 import 'package:first_app/Screens/Login/components/Background.dart';
 import 'package:first_app/Screens/Main/MainPage.dart';
 import 'package:first_app/components/RoundedInputField.dart';
 import 'package:first_app/components/RoundedPasswordField.dart';
-import 'package:first_app/components/TextFieldContainer.dart';
-import 'package:first_app/components/TextFieldContainerError.dart';
 import 'package:first_app/components/TextFieldError.dart';
 import 'package:first_app/components/rounded_button.dart';
 import 'package:first_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class Body extends StatefulWidget
 {
@@ -21,13 +22,30 @@ class Body extends StatefulWidget
   BodyForm createState() {
     return BodyForm();
   }
-
+  void configLoading() {
+    EasyLoading.instance
+      ..displayDuration = const Duration(milliseconds: 2000)
+      ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+      ..loadingStyle = EasyLoadingStyle.dark
+      ..indicatorSize = 45.0
+      ..radius = 10.0
+      ..progressColor = Colors.yellow
+      ..backgroundColor = Colors.green
+      ..indicatorColor = Colors.yellow
+      ..textColor = Colors.yellow
+      ..maskColor = Colors.blue.withOpacity(0.5)
+      ..userInteractions = true
+      ..dismissOnTap = false
+      ..customAnimation;
+  }
 }
 class BodyForm extends State<StatefulWidget>
 {
   final _formKey = GlobalKey<FormState>();
+  Timer? _timer;
+  late double _progress;
+
   var isButtonEnabled = false;
-  bool showProgress = false;
   bool hideError = true;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
@@ -60,20 +78,6 @@ class BodyForm extends State<StatefulWidget>
   void initState() {
     super.initState();
     isEmpty();
-    _usernameController.addListener(() {
-      setState(()
-      {
-
-      });
-
-    });
-    _usernameController.addListener(()
-    {
-      setState(()
-      {
-
-      });
-    });
   }
 
   @override
@@ -128,9 +132,6 @@ class BodyForm extends State<StatefulWidget>
                 text: "LOGIN",
                 bgColor: isButtonEnabled? BackgroundDefaultColor : Colors.grey,
                 onPressed: isButtonEnabled? () async {
-                  setState(() {
-                    showProgress = true;
-                  });
                   if(_formKey.currentState!.validate()){
                     // ScaffoldMessenger.of(context).showSnackBar(
                     //   const SnackBar(content: Text('Processing Data')),
@@ -139,6 +140,11 @@ class BodyForm extends State<StatefulWidget>
                     // hideError có lỗi nếu là false
                     if(hideError)
                     {
+                      _timer?.cancel();
+                      await EasyLoading.show(
+                        status: 'Loading ...',
+                        maskType: EasyLoadingMaskType.black,
+                      );
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -148,10 +154,15 @@ class BodyForm extends State<StatefulWidget>
                                   users: users,
                                 );
                               })
+                          // PageRouteBuilder(
+                          //   pageBuilder: (context, animation1, animation2) => MainPage(
+                          //     users: users,
+                          //   ),
+                          //   transitionDuration: Duration(seconds: 0),
+                          //
+                          // ),
                       );
-                      setState(() {
-                        showProgress = false;
-                      });
+                      await EasyLoading.dismiss();
                     }
                   }
                 } : null,
