@@ -3,7 +3,7 @@ import 'package:first_app/Screens/Main/components/Body.dart';
 import 'package:first_app/components/BottomNavBar.dart';
 import 'package:flutter/material.dart';
 
-import '../../AppBarWithLogoAndMenu.dart';
+import '../../AppBarLogoAndMenu.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({
