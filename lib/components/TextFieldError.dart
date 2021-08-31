@@ -19,14 +19,12 @@ class TextFieldError extends StatelessWidget
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return TextFieldContainerError(
       child:Center(
         child:IntrinsicWidth(
           child: TextField(
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.red,
-            ),
+            textAlignVertical: TextAlignVertical.center,
             decoration: !error ? InputDecoration(
               prefixIcon: Icon(
                   Icons.error,
@@ -37,7 +35,7 @@ class TextFieldError extends StatelessWidget
                   fontSize: 14.0,
                   color: Colors.redAccent),
               hintText: textError,
-              contentPadding: EdgeInsets.all(10.0),
+              isCollapsed: true,
             ) : null,
           ),
         ),
