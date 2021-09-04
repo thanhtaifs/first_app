@@ -1,4 +1,5 @@
 import 'package:first_app/Screens/Login/login_screen.dart';
+import 'package:first_app/Screens/Register/RegisterScreen.dart';
 import 'package:first_app/Screens/Welcome/components/Background.dart';
 import 'package:first_app/components/rounded_button.dart';
 import 'package:first_app/constants.dart';
@@ -48,8 +49,8 @@ class Body extends StatelessWidget
                     context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return LoginPage(
-                            title: 'SignUp',
+                          return RegisterScreen(
+                            title: 'Register',
                           );
                         },
                       ),
