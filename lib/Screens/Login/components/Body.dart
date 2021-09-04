@@ -45,7 +45,7 @@ class BodyForm extends State<StatefulWidget>
   final _formKey = GlobalKey<FormState>();
   Timer? _timer;
   late double _progress;
-
+  bool _passwordVisible = false;
   var isButtonEnabled = false;
   bool hideError = true;
   final TextEditingController _usernameController = TextEditingController();
@@ -105,12 +105,12 @@ class BodyForm extends State<StatefulWidget>
                     fontSize: 22,
                 ),
               ),
-              SizedBox(height: size.height * 0.02),
+              SizedBox(height: size.height * 0.01),
               SvgPicture.asset(
                 "assets/icons/LogoBrand.svg",
                 height: size.height * 0.40,
               ),
-              SizedBox(height: size.height * 0.02),
+              SizedBox(height: size.height * 0.01),
               RoundedInputField(
                 hintText: "Tên đăng nhập",
                 controller: _usernameController,
@@ -118,9 +118,31 @@ class BodyForm extends State<StatefulWidget>
                   isEmpty();
                 },
               ),
+              SizedBox(height: size.height * 0.01),
               RoundedPasswordField(
                 hintText: "Mật khâủ",
+                obscureText: !_passwordVisible,//This will obscure text dynamically
                 controller: _passController,
+                inputDecoration: InputDecoration(
+                  hintText: 'Nhập mật khẩu',
+                  icon: Icon(
+                      Icons.lock,
+                      color: BackgroundDefaultColor,
+                    ),
+                    suffixIcon: IconButton(
+                      icon : Icon(
+                        _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                        color: Theme.of(context).primaryColorDark,
+                      ),
+                      color: BackgroundDefaultColor,
+                      onPressed: () {
+                        setState(() {
+                          _passwordVisible = !_passwordVisible;
+                        });
+                      },
+                    ),
+                    border: InputBorder.none,
+                  ),
                 onChanged: (value) {
                   isEmpty();
                 },
@@ -137,7 +159,10 @@ class BodyForm extends State<StatefulWidget>
                     // ScaffoldMessenger.of(context).showSnackBar(
                     //   const SnackBar(content: Text('Processing Data')),
                     // );
-                    hideError = InitObject();
+                    setState(() {
+                      hideError = InitObject();
+                    });
+
                     // hideError có lỗi nếu là false
                     if(hideError)
                     {
@@ -168,7 +193,7 @@ class BodyForm extends State<StatefulWidget>
                   }
                 } : null,
               ),
-              SizedBox(height: size.height * 0.03),
+              SizedBox(height: size.height * 0.02),
 
             ],
           ),
